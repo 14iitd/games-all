@@ -8,7 +8,7 @@ class UserDao():
 
     def get_user_by_device(self, email):
         user_collection = self.db["users"]
-        user = user_collection.find_one({"email": email})
+        user = user_collection.find_one({"device_id": email})
         if user:
             user["id"] = str(user["_id"])
             user["_id"] = None
