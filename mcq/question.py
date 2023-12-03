@@ -45,8 +45,10 @@ class Question(BaseModel):
 async def create_question(question: Question):
     created_question = {
         "question_text": question.question,
+        "type":"mcq",
         "options": question.options,
-        "correct_answer": question.options[question.answer_index]
+        "correct_answer": question.options[question.answer_index],
+        "answer_index":question.answer_index
     }
     response = questionService.create_question(question=created_question)
 

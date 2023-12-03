@@ -6,4 +6,5 @@ class UserService():
         return self.user_dao.get_user_by_device(device_id)
     def create_user(self,user_request_data):
         new_user =  self.user_dao.create_user(user_request_data)
+        return new_user
 

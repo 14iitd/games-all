@@ -9,7 +9,7 @@ class QuestionDao():
         qstn = next(question_collection.aggregate([{ "$sample": { "size": 1 } }]))
         if qstn:
             qstn["id"] = str(qstn["_id"])
-            qstn["_id"] = None
+            del qstn["_id"]
         return qstn
 
     def sumbit_response(self, response):
