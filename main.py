@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 from mcq.question import router as postapi
 from users.login import router as loginapi
 

@@ -14,7 +14,7 @@ class QuestionDao():
 
     def sumbit_response(self, response):
         response_collection = self.db["response"]
-        new_user = response_collection.insert_one(response)
+        new_user = response_collection.insert_one(response.dict())
         user = response_collection.find_one({"_id": new_user.inserted_id})
         user["id"] = str(user["_id"])
         user["_id"] = None
