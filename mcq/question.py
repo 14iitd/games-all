@@ -43,7 +43,7 @@ class Question(BaseModel):
 
 
 @router.post("/create-question", status_code=201)
-async def create_question(question: Question,request,Request):
+async def create_question(question: Question,request:Request):
     headers = request.headers
     device_id = headers.get("device_id")
     created_question = {
