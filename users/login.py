@@ -36,3 +36,33 @@ async def login(request: Request):
         user_data = user_service.create_user(email_data)
     # import pdb;pdb.set_trace()
     return JSONResponse(content=user_data, status_code=200)
+
+
+
+@router.put("/api/profile")
+async def login(ProfileUpdateDto,request: Request):
+    # Simulate fetching user-specific data based on the authenticated user
+    headers = request.headers
+    # Access specific header values
+    device_id = headers.get("device_id")
+    user_data = user_service.update_profile(device_id)
+    if not user_data:
+        email_data = {
+            "device_id": device_id}
+        user_data = user_service.create_user(email_data)
+    # import pdb;pdb.set_trace()
+    return JSONResponse(content=user_data, status_code=200)
+
+@router.get("/api/profile")
+async def login(request: Request):
+    # Simulate fetching user-specific data based on the authenticated user
+    headers = request.headers
+    # Access specific header values
+    device_id = headers.get("device_id")
+    user_data = user_service.get_profile_by_device_id(device_id)
+    if not user_data:
+        email_data = {
+            "device_id": device_id}
+        user_data = user_service.create_user(email_data)
+    # import pdb;pdb.set_trace()
+    return JSONResponse(content=user_data, status_code=200)

@@ -1,10 +1,12 @@
 from fastapi import FastAPI
 from mcq.question import router as postapi
+from staticdata.question import router as static
 from users.login import router as loginapi
 
 app = FastAPI()
 
 app.include_router(postapi)
+app.include_router(static)
 app.include_router(loginapi)
 
 
