@@ -58,6 +58,13 @@ class Question(BaseModel):
     question: str
     options: List[str]
     answer_index: int
+    game: str
+    answer_index: int
+    category: str
+    age: str
+    difficulty: str
+    quiz_name: str
+    topic: str
 
 
 @router.post("/create-question", status_code=201)
