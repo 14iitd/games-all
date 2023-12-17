@@ -9,11 +9,12 @@ app.include_router(postapi)
 app.include_router(static)
 app.include_router(loginapi)
 
+from fastapi.responses import FileResponse
 
 @app.get("/")
 async def health_check():
 
-    return {"Message": "To access APIs put /docs in the URL."}
+    return FileResponse("home.html")
 # If this script is executed, run the FastAPI application directly
 if __name__ == "__main__":
     import uvicorn

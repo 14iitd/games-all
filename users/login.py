@@ -40,7 +40,7 @@ async def login(request: Request):
 
 
 @router.put("/api/profile")
-async def login(ProfileUpdateDto,request: Request):
+async def login(request: Request,user_update_data:Dict):
     # Simulate fetching user-specific data based on the authenticated user
     headers = request.headers
     # Access specific header values
