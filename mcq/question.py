@@ -54,35 +54,26 @@ async def submit_responses(user_response: UserResponse):
     return JSONResponse(content=ret)
 
 
-class Question(BaseModel):
-    question: str
-    options: List[str]
-    answer_index: int
-    game: str
-    answer_index: int
-    category: str
-    age: str
-    difficulty: str
-    quiz_name: str
-    topic: str
 
 
 @router.post("/create-question", status_code=201)
-async def create_question(question: Question, request: Request):
+async def create_question(request: Request,question: Dict):
     headers = request.headers
     device_id = headers.get("device_id")
+    answer_index= question.get("answer_index")
+    options= question.get("options")
     created_question = {
         "device_id": device_id,
-        "question_text": question.question,
-        "game": question.game,
-        "options": question.options,
-        "correct_answer": question.options[question.answer_index],
-        "answer_index": question.answer_index,
-        "category":question.category,
-        "age":question.age,
-        "difficulty":question.difficulty,
-        "quiz_name":question.quiz,
-        "topic":question.topic
+        "question_text": question.get("question"),
+        "game": question.get("game"),
+        "options": options,
+        "correct_answer":options[answer_index],
+        "answer_index": answer_index,
+        "category":question.get("category"),
+        "age":question.get("age"),
+        "difficulty":question.get("difficulty"),
+        "quiz_name":question.get("quiz"),
+        "topic":question.get("topic")
     }
     response = questionService.create_question(question=created_question)
 
