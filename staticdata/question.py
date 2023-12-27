@@ -6,13 +6,13 @@ from fastapi import APIRouter, Depends, Request
 
 router = APIRouter()
 
-from mcq.questionService import QuestionService
+from mcq.mcqService import McqService
 
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import JSONResponse
 import json
 
-questionService=QuestionService()
+questionService=McqService()
 # Endpoint to get MCQ questions
 @router.get("/get-data")
 async def get_question():

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSocket Test</title>
+</head>
+<body>
+  <h1>WebSocket Test</h1>
+  <button onclick="connectToWebSocket()">Connect to WebSocket</button>
+  <button onclick="sendWebSocketMessage()">Send Message</button>
+
+  <textarea id="message" placeholder="Enter your message..."></textarea>
+  <div id="output"></div>
+
+  <script>
+    let socket;
+
+    function connectToWebSocket() {
+      socket = new WebSocket('ws://127.0.0.1:8000/ws/1/2'); // Replace with your server URL
+      socket.onopen = function(event) {
+        console.log('WebSocket connected!');
+      };
+
+      socket.onmessage = function(event) {
+        const output = document.getElementById('output');
+        output.innerHTML += `<p>Received: ${event.data}</p>`;
+      };
+
+      socket.onclose = function(event) {
+        console.log('WebSocket closed!');
+      };
+
+      socket.onerror = function(error) {
+        console.error('WebSocket error:', error);
+      };
+    }
+
+    function sendWebSocketMessage() {
+      const messageInput = document.getElementById('message');
+      const message = messageInput.value;
+      socket.send(message);
+      messageInput.value = '';
+    }
+  </script>
+</body>
+</html>

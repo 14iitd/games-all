@@ -1,11 +1,16 @@
 from fastapi import FastAPI
-from mcq.question import router as postapi
+from question import router as questionapi
 from staticdata.question import router as static
 from users.login import router as loginapi
+from wordle.wordle import router as wordleapis
+from mcq.mcq import router as mcqapis
+
 
 app = FastAPI()
 
-app.include_router(postapi)
+app.include_router(questionapi)
+app.include_router(mcqapis)
+app.include_router(wordleapis)
 app.include_router(static)
 app.include_router(loginapi)
 
